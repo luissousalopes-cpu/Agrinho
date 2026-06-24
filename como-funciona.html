@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como Funciona — AgroSim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #2d5a27;
+      --verde-claro: #5a8f52;
+      --terra: #8b5e3c;
+      --palha: #f5f0e8;
+      --creme: #fdfaf4;
+      --escuro: #1a1a1a;
+      --texto: #2c2c2c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--creme);
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(253,250,244,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(45,90,39,0.12);
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      color: var(--verde);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--terra); }
+
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      text-decoration: none;
+      color: var(--texto);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover, nav ul a.ativo { color: var(--verde); }
+
+    /* HERO DA PÁGINA */
+    .page-hero {
+      background: var(--palha);
+      padding: 10rem 4rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,143,82,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .breadcrumb {
+      font-size: 0.82rem;
+      color: #999;
+      margin-bottom: 1.2rem;
+    }
+    .breadcrumb a { color: var(--verde-claro); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .page-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      color: var(--verde);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* CONTEÚDO */
+    .conteudo { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+
+    /* PASSOS DETALHADOS */
+    .passo-detalhe {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      align-items: start;
+    }
+
+    .passo-detalhe:last-of-type { margin-bottom: 0; }
+
+    .passo-lado {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .passo-num-grande {
+      width: 56px; height: 56px;
+      background: var(--verde);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .passo-linha {
+      width: 2px;
+      flex: 1;
+      min-height: 60px;
+      background: linear-gradient(to bottom, var(--verde), transparent);
+      opacity: 0.25;
+    }
+
+    .passo-detalhe:last-of-type .passo-linha { display: none; }
+
+    .passo-corpo h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: var(--verde);
+      margin-bottom: 0.5rem;
+    }
+
+    .passo-corpo .tag {
+      display: inline-block;
+      background: var(--palha);
+      color: var(--terra);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .passo-corpo p {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 0.97rem;
+    }
+
+    .passo-corpo p:last-of-type { margin-bottom: 0; }
+
+    .detalhe-box {
+      background: white;
+      border-left: 3px solid var(--verde-claro);
+      border-radius: 0 12px 12px 0;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .detalhe-box p {
+      font-size: 0.88rem;
+      color: #777;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .detalhe-box strong { color: var(--verde); }
+
+    /* DIVISOR */
+    .divisor {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      margin: 4rem 0;
+    }
+
+    /* PERGUNTAS FREQUENTES */
+    .faq-titulo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: var(--verde);
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-sub { color: #777; font-size: 0.95rem; margin-bottom: 2.5rem; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 1.2rem 0;
+    }
+
+    .faq-pergunta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.97rem;
+      color: var(--texto);
+      gap: 1rem;
+    }
+
+    .faq-pergunta:hover { color: var(--verde); }
+
+    .faq-icone {
+      font-size: 1.1rem;
+      color: var(--verde);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-resposta {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .faq-item.aberto .faq-resposta { max-height: 300px; padding-top: 0.8rem; }
+    .faq-item.aberto .faq-icone { transform: rotate(45deg); }
+
+    /* CTA FINAL */
+    .cta-final {
+      background: var(--verde);
+      border-radius: 24px;
+      padding: 3.5rem;
+      text-align: center;
+      margin: 4rem 0 0;
+    }
+
+    .cta-final h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-final p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 0.97rem; }
+
+    .btn-branco {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: white;
+      color: var(--verde);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-branco:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* FOOTER */
+    footer {
+      background: var(--escuro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem 4rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: white; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .page-hero { padding: 8rem 1.5rem 3rem; }
+      .conteudo { padding: 3rem 1.5rem; }
+      .passo-detalhe { grid-template-columns: 48px 1fr; gap: 1.2rem; }
+      .passo-num-grande { width: 44px; height: 44px; font-size: 1.1rem; }
+      .cta-final { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Agro<span>Sim</span></a>
+  <ul>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#empresa">A Empresa</a></li>
+    <li><a href="como-funciona.html" class="ativo">Como Funciona</a></li>
+    <li><a href="index.html#galeria">Galeria</a></li>
+    <li><a href="index.html#dicas">Dicas IA</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO DA PÁGINA -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Início</a> › Como Funciona
+  </div>
+  <h1>Como o AgroSim<br><em style="font-style:italic; color:var(--terra)">funciona?</em></h1>
+  <p>Entenda o processo por trás das nossas dicas e como transformamos informações sobre seu sítio em orientações práticas de renda.</p>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="conteudo">
+
+  <!-- PASSOS -->
+  <div class="passo-detalhe">
+    <div class="passo-lado">
+      <div class="passo-num-grande">1</div>
+      <div class="passo-linha"></div>
+    </div>
+    <div class="passo-corpo">
+      <span class="tag">Entrada</span>
+      <h2>Você descreve seu sítio</h2>
+      <p>Tudo começa com você. No campo de texto do Consultor do Sítio, descreva sua propriedade com o máximo de detalhes que conseguir: tamanho em alqueires ou hectares, o que você já planta, criações que tem, fontes de água, clima da região, e qualquer recurso disponível.</p>
+      <p>Quanto mais contexto você fornecer, mais precisa e útil será a recomendação. Não existe resposta certa ou errada — o sistema aceita desde "tenho 1 alqueire e algumas galinhas" até descrições detalhadas de propriedades com múltiplas culturas.</p>
+      <div class="detalhe-box">
+        <p><strong>Dica:</strong> mencione também restrições, como falta de mão de obra, acesso limitado a água ou dificuldade de transporte. Isso ajuda o sistema a evitar sugestões que não cabem na sua realidade.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo-detalhe">
+    <div class="passo-lado">
+      <div class="passo-num-grande">2</div>
+      <div class="passo-linha"></div>
+    </div>
+    <div class="passo-corpo">
+      <span class="tag">Processamento</span>
+      <h2>A IA analisa seu perfil</h2>
+      <p>Sua descrição é enviada para um modelo de inteligência artificial treinado com conhecimento agronômico, de mercado e de agricultura familiar brasileira. O modelo identifica o potencial da sua propriedade, os gargalos de renda e as oportunidades que você pode não estar enxergando.</p>
+      <p>O processo leva alguns segundos. A IA não usa fórmulas genéricas — ela considera a combinação específica do que você descreveu para montar as sugestões.</p>
+      <div class="detalhe-box">
+        <p><strong>Tecnologia:</strong> utilizamos a API da Anthropic com um modelo de linguagem especializado, com instruções focadas em agricultura familiar e geração de renda rural no contexto brasileiro.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo-detalhe">
+    <div class="passo-lado">
+      <div class="passo-num-grande">3</div>
+      <div class="passo-linha"></div>
+    </div>
+    <div class="passo-corpo">
+      <span class="tag">Resultado</span>
+      <h2>Você recebe dicas práticas</h2>
+      <p>A resposta chega em formato de lista com sugestões numeradas e diretas. Cada dica é pensada para ser acionável — não teórica. O objetivo é que você consiga avaliar e começar a implementar sem precisar de conhecimento técnico avançado.</p>
+      <p>Você pode fazer quantas consultas quiser, refinando a descrição a cada vez. Se uma dica não se encaixa, descreva melhor sua limitação e pergunte de novo.</p>
+      <div class="detalhe-box">
+        <p><strong>Importante:</strong> as dicas são orientações iniciais, não substituem consulta com agrônomo para decisões de grande investimento. Use como ponto de partida.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divisor" />
+
+  <!-- FAQ -->
+  <h2 class="faq-titulo">Perguntas frequentes</h2>
+  <p class="faq-sub">O que as pessoas mais querem saber antes de usar</p>
+
+  <div class="faq-item">
+    <div class="faq-pergunta" onclick="toggleFaq(this)">
+      O serviço é gratuito?
+      <span class="faq-icone">+</span>
+    </div>
+    <div class="faq-resposta">Sim, totalmente. O Consultor do Sítio não tem limite de uso e não exige cadastro. Nossa missão é democratizar o acesso à orientação agrícola, e cobrar por isso iria contra esse princípio.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-pergunta" onclick="toggleFaq(this)">
+      Preciso criar uma conta para usar?
+      <span class="faq-icone">+</span>
+    </div>
+    <div class="faq-resposta">Não. Basta acessar a seção Dicas IA na página inicial, descrever seu sítio e enviar. Nenhum cadastro ou login é necessário.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-pergunta" onclick="toggleFaq(this)">
+      As dicas funcionam para qualquer tipo de propriedade?
+      <span class="faq-icone">+</span>
+    </div>
+    <div class="faq-resposta">Funciona melhor para pequenas e médias propriedades rurais brasileiras — sítios, chácaras e pequenas fazendas. Para propriedades muito grandes com operações complexas, a ferramenta pode dar orientações iniciais, mas o acompanhamento profissional é recomendado.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-pergunta" onclick="toggleFaq(this)">
+      Posso usar o mesmo chat várias vezes seguidas?
+      <span class="faq-icone">+</span>
+    </div>
+    <div class="faq-resposta">Sim. Cada mensagem enviada gera uma nova análise. Você pode refinar sua descrição, fazer perguntas de acompanhamento ou explorar cenários diferentes na mesma conversa.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-pergunta" onclick="toggleFaq(this)">
+      As minhas informações ficam salvas?
+      <span class="faq-icone">+</span>
+    </div>
+    <div class="faq-resposta">Não armazenamos o conteúdo das suas conversas. Cada sessão é independente e as informações que você digita não ficam registradas nos nossos servidores após o encerramento da página.</div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <h2>Pronto para experimentar?</h2>
+    <p>Leva menos de um minuto. Descreva seu sítio e veja o que a IA sugere.</p>
+    <a href="index.html#dicas" class="btn-branco">Consultar agora →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <strong>AgroSim</strong> — Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const aberto = item.classList.contains('aberto');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('aberto'));
+    if (!aberto) item.classList.add('aberto');
+  }
+</script>
+
+</body>
+</html>
