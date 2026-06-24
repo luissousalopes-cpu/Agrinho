@@ -166,7 +166,7 @@
     .stat span { font-size: 0.75rem; color: #888; }
 
     /* SEÇÃO GENÉRICA */
-    section { padding: 6rem 4rem; scroll-margin-top: 70px; }
+    section { padding: 6rem 4rem; }
 
     .secao-titulo {
       font-family: 'Fraunces', serif;
@@ -396,236 +396,13 @@
 
     footer strong { color: white; }
 
-    /* BOTÕES HERO */
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-outline {
-      display: inline-block;
-      padding: 0.9rem 2.2rem;
-      border: 2px solid var(--verde);
-      color: var(--verde);
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-    .btn-outline:hover { background: var(--verde); color: white; transform: translateY(-2px); }
-
-    /* EMPRESA */
-    #empresa { background: var(--palha); }
-
-    .empresa-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .empresa-texto p {
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 1rem;
-    }
-
-    .empresa-valores { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
-
-    .valor-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .valor-icone {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .valor-item strong {
-      display: block;
-      color: var(--verde);
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .valor-item p { font-size: 0.85rem; color: #777; margin: 0; line-height: 1.5; }
-
-    .empresa-lateral { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .empresa-foto {
-      border-radius: 20px;
-      overflow: hidden;
-      height: 260px;
-    }
-
-    .empresa-foto img { width: 100%; height: 100%; object-fit: cover; }
-
-    .empresa-numeros {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .numero-item {
-      background: white;
-      border-radius: 14px;
-      padding: 1.2rem;
-      text-align: center;
-    }
-
-    .numero-item strong {
-      display: block;
-      font-family: 'Fraunces', serif;
-      font-size: 1.5rem;
-      color: var(--verde);
-    }
-
-    .numero-item span { font-size: 0.78rem; color: #888; }
-
-    /* COMO FUNCIONA */
-    #como {
-      background: var(--creme);
-      text-align: center;
-    }
-    #como .secao-titulo, #como .secao-sub { text-align: center; }
-
-    .passos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .passo {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
-    }
-    .passo:hover { transform: translateY(-4px); }
-
-    .passo-num {
-      position: absolute;
-      top: -16px; left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px;
-      background: var(--verde);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .passo-icone { font-size: 2.8rem; margin-bottom: 1rem; margin-top: 0.5rem; }
-
-    .passo h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.15rem;
-      color: var(--verde);
-      margin-bottom: 0.6rem;
-    }
-
-    .passo p { font-size: 0.88rem; color: #777; line-height: 1.6; }
-
-    .passo .btn-passo {
-      display: inline-block;
-      margin-top: 1.2rem;
-      padding: 0.55rem 1.4rem;
-      background: var(--palha);
-      color: var(--verde);
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    .passo .btn-passo:hover { background: var(--verde); color: white; }
-
-    /* GALERIA */
-    #galeria {
-      background: white;
-      padding-bottom: 5rem;
-    }
-
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 220px 220px;
-      gap: 1rem;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .galeria-item {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .galeria-item:first-child {
-      grid-row: 1 / 3;
-    }
-
-    .galeria-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-
-    .galeria-item:hover img { transform: scale(1.05); }
-
-    .galeria-item .legenda {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.55));
-      color: white;
-      padding: 1rem 1rem 0.7rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .galeria-item:hover .legenda { opacity: 1; }
-
-    /* BOTÕES RÁPIDOS CHAT */
-    .chat-sugestoes {
-      padding: 0.8rem 1.5rem;
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      border-top: 1px solid #f0f0f0;
-      background: #fafafa;
-    }
-
-    .sugestao-btn {
-      padding: 0.4rem 1rem;
-      border: 1.5px solid var(--verde-claro);
-      background: white;
-      color: var(--verde);
-      border-radius: 50px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: all 0.2s;
-    }
-    .sugestao-btn:hover { background: var(--verde); color: white; border-color: var(--verde); }
-
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
       .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
       .hero-visual { display: none; }
-      #sobre, #contato, .empresa-grid { grid-template-columns: 1fr; gap: 2rem; }
+      #sobre, #contato { grid-template-columns: 1fr; gap: 2rem; }
       section { padding: 4rem 1.5rem; }
-      .passos { grid-template-columns: 1fr; }
-      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .galeria-item:first-child { grid-row: auto; }
     }
   </style>
 </head>
@@ -635,9 +412,6 @@
   <div class="logo">Agro<span>Sim</span></div>
   <ul>
     <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#empresa">A Empresa</a></li>
-    <li><a href="como-funciona.html">Como Funciona</a></li>
-    <li><a href="#galeria">Galeria</a></li>
     <li><a href="#dicas">Dicas IA</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -648,10 +422,7 @@
   <div class="hero-texto">
     <h1>Produza mais.<br><em>Ganhe melhor.</em></h1>
     <p>O AgroSim conecta pequenos produtores rurais com orientações práticas para aumentar a renda do campo com sustentabilidade.</p>
-    <div class="hero-btns">
-      <a href="#dicas" class="btn">Pedir dicas agora →</a>
-      <a href="como-funciona.html" class="btn-outline">Como funciona</a>
-    </div>
+    <a href="#dicas" class="btn">Pedir dicas agora →</a>
   </div>
   <div class="hero-visual">
     <div class="hero-card">
@@ -688,128 +459,7 @@
   </div>
 </section>
 
-<!-- A EMPRESA -->
-<section id="empresa">
-  <h2 class="secao-titulo">A empresa</h2>
-  <p class="secao-sub">Quem está por trás do AgroSim</p>
-
-  <div class="empresa-grid">
-    <div class="empresa-texto">
-      <p>O AgroSim foi fundado em 2021 em Maringá, Paraná, por um grupo de engenheiros agrônomos e desenvolvedores de software que cresceram no campo e viram de perto a dificuldade do pequeno produtor em acessar orientação técnica de qualidade.</p>
-      <p>A missão é simples: democratizar o acesso ao conhecimento agronômico. Enquanto grandes fazendas contratam consultores especializados, o sitiante de 3 alqueires precisa adivinhar o que plantar na próxima safra. O AgroSim muda isso.</p>
-      <p>Hoje somos uma equipe de 18 pessoas, com sede em Maringá e parceiros em todo o Paraná, Mato Grosso do Sul e São Paulo.</p>
-
-      <div class="empresa-valores">
-        <div class="valor-item">
-          <span class="valor-icone">🌱</span>
-          <div>
-            <strong>Raiz no campo</strong>
-            <p>Nossa equipe conhece a realidade rural por experiência própria, não só por dados.</p>
-          </div>
-        </div>
-        <div class="valor-item">
-          <span class="valor-icone">🤝</span>
-          <div>
-            <strong>Acesso para todos</strong>
-            <p>A ferramenta de dicas é gratuita. Acreditamos que informação não pode ter porteira.</p>
-          </div>
-        </div>
-        <div class="valor-item">
-          <span class="valor-icone">📊</span>
-          <div>
-            <strong>Baseado em dados reais</strong>
-            <p>Nossas recomendações combinam IA com dados climáticos, de mercado e agronômicos do Brasil.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="empresa-lateral">
-      <div class="empresa-foto">
-        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80" alt="Equipe AgroSim no campo" />
-      </div>
-      <div class="empresa-numeros">
-        <div class="numero-item">
-          <strong>2021</strong>
-          <span>Fundação</span>
-        </div>
-        <div class="numero-item">
-          <strong>18</strong>
-          <span>Pessoas na equipe</span>
-        </div>
-        <div class="numero-item">
-          <strong>3 estados</strong>
-          <span>de atuação</span>
-        </div>
-        <div class="numero-item">
-          <strong>12 mil</strong>
-          <span>produtores atendidos</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section id="como">
-  <h2 class="secao-titulo">Como funciona?</h2>
-  <p class="secao-sub">Três passos simples para transformar seu sítio</p>
-
-  <div class="passos">
-    <div class="passo">
-      <div class="passo-num">1</div>
-      <div class="passo-icone">📝</div>
-      <h3>Descreva seu sítio</h3>
-      <p>Conte o tamanho da propriedade, o que você planta, as criações que tem e os recursos disponíveis.</p>
-      <a href="#dicas" class="btn-passo">Começar agora →</a>
-    </div>
-    <div class="passo">
-      <div class="passo-num">2</div>
-      <div class="passo-icone">🤖</div>
-      <h3>A IA analisa tudo</h3>
-      <p>Nossa inteligência artificial especializada em agricultura familiar processa o perfil da sua propriedade.</p>
-      <a href="#dicas" class="btn-passo">Ver exemplo →</a>
-    </div>
-    <div class="passo">
-      <div class="passo-num">3</div>
-      <div class="passo-icone">💰</div>
-      <h3>Receba suas dicas</h3>
-      <p>Sugestões práticas e personalizadas para diversificar sua renda, sempre respeitando sua realidade.</p>
-      <a href="#dicas" class="btn-passo">Experimentar →</a>
-    </div>
-  </div>
-</section>
-
-<!-- GALERIA -->
-<section id="galeria">
-  <h2 class="secao-titulo">O campo em imagens</h2>
-  <p class="secao-sub">A beleza e o potencial da agricultura sustentável</p>
-
-  <div class="galeria-grid">
-    <div class="galeria-item">
-      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80" alt="Campo agrícola ao pôr do sol" />
-      <div class="legenda">Campo ao pôr do sol</div>
-    </div>
-    <div class="galeria-item">
-      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Plantação verde" />
-      <div class="legenda">Plantação saudável</div>
-    </div>
-    <div class="galeria-item">
-      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80" alt="Colheita" />
-      <div class="legenda">Tempo de colheita</div>
-    </div>
-    <div class="galeria-item">
-      <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80" alt="Horta orgânica" />
-      <div class="legenda">Horta orgânica</div>
-    </div>
-    <div class="galeria-item">
-      <img src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?w=600&q=80" alt="Criação de animais" />
-      <div class="legenda">Criação sustentável</div>
-    </div>
-  </div>
-</section>
-
-
+<!-- DICAS IA -->
 <section id="dicas">
   <h2 class="secao-titulo">Consultor do Sítio 🌿</h2>
   <p class="secao-sub">Descreva seu sítio e receba dicas práticas para aumentar sua renda</p>
@@ -821,12 +471,6 @@
     </div>
     <div class="chat-mensagens" id="chat">
       <div class="msg bot">Olá! 👋 Me conta sobre o seu sítio: tamanho, o que você planta, criações que tem, e qualquer detalhe que achar importante. Vou te dar dicas para aumentar sua renda!</div>
-    </div>
-    <div class="chat-sugestoes">
-      <button class="sugestao-btn" onclick="preencherSugestao('Tenho 2 alqueires, planto milho e mandioca, tenho galinhas caipiras')">🌽 Milho e mandioca</button>
-      <button class="sugestao-btn" onclick="preencherSugestao('Tenho um sítio pequeno com horta, pomar de frutas tropicais e uma vaca leiteira')">🐄 Pomar e leite</button>
-      <button class="sugestao-btn" onclick="preencherSugestao('Tenho 5 alqueires de mata e pastagem, quero começar a produzir mas não sei o quê')">🌿 Quero começar</button>
-      <button class="sugestao-btn" onclick="preencherSugestao('Planto arroz e feijão, mas a renda está baixa. Tenho rio passando na propriedade')">💧 Rio na propriedade</button>
     </div>
     <div class="chat-form">
       <textarea id="input" placeholder="Ex: tenho 3 alqueires, planto milho e feijão, tenho algumas galinhas..." rows="1"></textarea>
@@ -872,6 +516,11 @@
   </div>
 
   <div class="mapa-visual">
+    <h3>🕐 Atendimento</h3>
+    <div class="horario-item"><span>Segunda – Sexta</span><span>08h às 18h</span></div>
+    <div class="horario-item"><span>Sábado</span><span>08h às 12h</span></div>
+    <div class="horario-item"><span>Domingo</span><span>Fechado</span></div>
+    <br>
     <h3>📲 Redes sociais</h3>
     <div class="horario-item"><span>Instagram</span><span>@agrosim.br</span></div>
     <div class="horario-item"><span>YouTube</span><span>@agrosim</span></div>
@@ -884,11 +533,6 @@
 </footer>
 
 <script>
-  function preencherSugestao(texto) {
-    input.value = texto;
-    input.focus();
-  }
-
   const chat = document.getElementById('chat');
   const input = document.getElementById('input');
   const btn = document.getElementById('enviar');
@@ -946,19 +590,6 @@ Responda sempre em português do Brasil.`,
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       enviarMensagem();
-    }
-  });
-
-  // Corrige scroll quando chega via link externo com hash
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      const alvo = document.querySelector(window.location.hash);
-      if (alvo) {
-        setTimeout(() => {
-          const topo = alvo.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: topo, behavior: 'smooth' });
-        }, 100);
-      }
     }
   });
 </script>
