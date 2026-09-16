@@ -917,29 +917,33 @@
     const loading = addMsg('Analisando seu sítio...', 'bot loading');
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      // A chave da API NÃO fica no navegador.
+      // O navegador chama a função da Vercel em /api/chat,
+      // e a função usa GEMINI_API_KEY no servidor.
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: `Você é um consultor agrícola especialista em pequenas propriedades rurais brasileiras. 
-O usuário vai descrever o sítio dele (tamanho, culturas, criações, recursos). 
-Você deve responder com dicas práticas, diretas e realistas para aumentar a renda da propriedade.
-Foque em: diversificação de culturas, agroturismo, venda direta, processamento caseiro, criações rentáveis, etc.
-Seja amigável, use linguagem simples, e dê entre 3 e 5 sugestões concretas numeradas.
-Responda sempre em português do Brasil.`,
-          messages: [{ role: 'user', content: texto }]
-        })
+        body: JSON.stringify({ mensagem: texto })
       });
 
       const data = await response.json();
+
       loading.remove();
-      const resposta = data.content?.[0]?.text || 'Não consegui gerar uma resposta. Tente novamente.';
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao consultar a IA.');
+      }
+
+      const resposta = data.resposta || 'Não consegui gerar uma resposta. Tente novamente.';
       addMsg(resposta, 'bot');
+
     } catch (e) {
       loading.remove();
-      addMsg('Erro ao conectar. Verifique sua conexão e tente novamente.', 'bot');
+      console.error('Erro no chat:', e);
+      addMsg(
+        'Não consegui conectar com o assistente agora. Tente novamente em alguns instantes.',
+        'bot'
+      );
     }
 
     btn.disabled = false;
