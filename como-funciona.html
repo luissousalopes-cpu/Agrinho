@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Como Funciona — AgroNexus</title>
+  <title>Como Funciona — AgroAjuda</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,6 +25,29 @@
       background: var(--creme);
       color: var(--texto);
       overflow-x: hidden;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    body.modo-escuro {
+      --palha: #202a20;
+      --creme: #151a16;
+      --escuro: #0b0f0c;
+      --texto: #edf3ed;
+    }
+
+    body.modo-escuro nav { background: rgba(21,26,22,0.92); }
+    body.modo-escuro .detalhe-box { background: #263127; }
+    body.modo-escuro .passo-corpo p, body.modo-escuro .faq-sub, body.modo-escuro .faq-resposta, body.modo-escuro .page-hero p { color: #c3cec3; }
+
+    .tema-btn {
+      border: 1px solid var(--verde-claro);
+      background: transparent;
+      color: var(--texto);
+      border-radius: 50px;
+      padding: 0.45rem 0.8rem;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.8rem;
     }
 
     /* NAV */
@@ -305,7 +328,8 @@
 <body>
 
 <nav>
-  <a href="index.html" class="logo">Agro<span>Sim</span></a>
+  <a href="index.html" class="logo">Agro<span>Ajuda</span></a>
+  <button class="tema-btn" id="tema-btn" type="button" aria-label="Ativar modo escuro">Modo escuro</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
     <li><a href="index.html#empresa">A Empresa</a></li>
@@ -321,7 +345,7 @@
   <div class="breadcrumb">
     <a href="index.html">Início</a> › Como Funciona
   </div>
-  <h1>Como o AgroNexus<br><em style="font-style:italic; color:var(--terra)">funciona?</em></h1>
+  <h1>Como o AgroAjuda<br><em style="font-style:italic; color:var(--terra)">funciona?</em></h1>
   <p>Entenda o processo por trás das nossas dicas e como transformamos informações sobre seu sítio em orientações práticas de renda.</p>
 </div>
 
@@ -337,7 +361,7 @@
     <div class="passo-corpo">
       <span class="tag">Entrada</span>
       <h2>Você descreve seu sítio</h2>
-      <p>Tudo começa com você. No campo de texto do Consultor do Sítio, descreva sua propriedade com o máximo de detalhes que conseguir: tamanho em alqueires ou hectares, o que você já planta, criações que tem, fontes de água, clima da região, e qualquer recurso disponível.</p>
+      <p>Tudo começa com você. No campo de texto do IAgro, descreva sua propriedade com o máximo de detalhes que conseguir: tamanho em alqueires ou hectares, o que você já planta, criações que tem, fontes de água, clima da região, e qualquer recurso disponível.</p>
       <p>Quanto mais contexto você fornecer, mais precisa e útil será a recomendação. Não existe resposta certa ou errada — o sistema aceita desde "tenho 1 alqueire e algumas galinhas" até descrições detalhadas de propriedades com múltiplas culturas.</p>
       <div class="detalhe-box">
         <p><strong>Dica:</strong> mencione também restrições, como falta de mão de obra, acesso limitado a água ou dificuldade de transporte. Isso ajuda o sistema a evitar sugestões que não cabem na sua realidade.</p>
@@ -388,7 +412,7 @@
       O serviço é gratuito?
       <span class="faq-icone">+</span>
     </div>
-    <div class="faq-resposta">Sim, totalmente. O Consultor do Sítio não tem limite de uso e não exige cadastro. Nossa missão é democratizar o acesso à orientação agrícola, e cobrar por isso iria contra esse princípio.</div>
+    <div class="faq-resposta">Sim, totalmente. O IAgro não tem limite de uso e não exige cadastro. Nossa missão é democratizar o acesso à orientação agrícola, e cobrar por isso iria contra esse princípio.</div>
   </div>
 
   <div class="faq-item">
@@ -433,10 +457,17 @@
 </div>
 
 <footer>
-  <p>© 2026 <strong>AgroNexus</strong> — Todos os direitos reservados.</p>
+  <p>© 2026 <strong>AgroAjuda</strong> — Todos os direitos reservados.</p>
 </footer>
 
 <script>
+  const temaBtn = document.getElementById('tema-btn');
+  temaBtn.addEventListener('click', () => {
+    const escuro = document.body.classList.toggle('modo-escuro');
+    temaBtn.textContent = escuro ? 'Modo claro' : 'Modo escuro';
+    temaBtn.setAttribute('aria-label', escuro ? 'Ativar modo claro' : 'Ativar modo escuro');
+  });
+
   function toggleFaq(el) {
     const item = el.parentElement;
     const aberto = item.classList.contains('aberto');
